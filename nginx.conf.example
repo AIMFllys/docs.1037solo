@@ -1,0 +1,26 @@
+server {
+    listen 80;
+    server_name your-domain.com; # 替换为您的域名
+
+    root /path/to/your/project/dist; # 替换为宝塔中的网站根目录
+    index index.html;
+
+    # 开启 gzip 压缩，加快加载速度
+    gzip on;
+    gzip_min_length 1k;
+    gzip_comp_level 6;
+    gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    gzip_vary on;
+
+    # 核心配置：SPA 路由重定向
+    # 解决刷新页面 404 的问题
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 静态资源缓存配置（可选）
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 30d;
+        add_header Cache-Control "public, no-transform";
+    }
+}
