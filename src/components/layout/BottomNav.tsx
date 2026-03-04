@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { navItems } from '@/config/nav';
+import { visibleNavItems } from '@/config/nav';
 import { cn } from '@/lib/utils';
 
 export function BottomNav() {
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 border-t bg-background/90 backdrop-blur-lg z-50 flex items-center justify-around px-1 pb-safe shadow-lg">
-      {navItems.map((item) => (
+      {visibleNavItems.map((item) => (
         <NavLink
           key={item.path}
           to={item.path}
